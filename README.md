@@ -1,69 +1,79 @@
-# React + TypeScript + Vite
+# Internal App Widget
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a small React widget built with Vite and TypeScript. It produces a single JS bundle (`internal-app.js`) that can be embedded into other projects (e.g., Rails `html.erb` pages).
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Setup
 
-## Expanding the ESLint configuration
+Install dependencies using `pnpm`:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+pnpm i
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Development
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Start the Vite development server with hot reload:
+
+```bash
+pnpm run dev
+```
+
+- Opens the dev server at `http://localhost:5173/` by default.
+- You can preview your widget using the `index.html` file in the root or `public/`.
+
+---
+
+## Build for Production
+
+Build the widget for production:
+
+```bash
+pnpm run build
+```
+
+- Generates the optimized JS bundle in the `dist/` folder.
+- The main bundle is named `internal-app.js`.
+
+---
+
+## Preview Production Build
+
+Preview the production build locally:
+
+```bash
+pnpm run preview
+```
+
+- Opens a local server (default `http://localhost:4173/`) serving the production build.
+- Use this to test your widget exactly like it will run in Rails.
+
+---
+
+## Folder Structure
+
+```
+project/
+├─ public/         # optional static assets or test HTML
+│  └─ index.html
+├─ src/            # React source code
+│  └─ main.tsx
+├─ vite.config.ts  # Vite configuration
+└─ package.json
+```
+
+---
+
+## Notes
+
+- By default, the widget mounts to a `div` with `id="my-widget"` in your HTML.
+- All dependencies (including React) are bundled in `internal-app.js`.
+- For Rails integration, just include:
+
+```erb
+ <interal-app></interal-app>
+<script type="module" src="/path/to/internal-app.js"></script>
 ```
