@@ -44,7 +44,7 @@ When reviewing code or generating PRs, you MUST enforce the following strict gui
 ## 📥 STEP 1: DISCOVERY & DEEP CONTEXT FETCHING
 1. Scan the PR title, branch name, and description for a Jira issue key (e.g., `KAN-1`, `KAN-4`, `PROJ-123`).
 2. If found, you MUST aggressively discover the full context of the work. You MUST first use the Atlassian MCP tool `getTeamworkGraphContext`:
-   - **`cloudId`**: `neovancedemoatlassian.atlassian.net`
+   - **`cloudId`**: `rpxtest.atlassian.net`
    - **`objectType`**: `"JiraWorkItem"`
    - **`objectIdentifier`**: `[ISSUE_KEY]`
 3. `getTeamworkGraphContext` will return a graph of relationships (e.g., the parent Epic, child tasks, blocked issues, or related stories). 
