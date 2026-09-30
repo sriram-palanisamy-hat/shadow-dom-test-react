@@ -2,12 +2,14 @@ import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import styles from "./App.css?inline";
+import { Header } from "./Header";
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
     <>
+      <Header />
       <style>{styles}</style>
       <div>
         <a href="https://vite.dev" target="_blank">
