@@ -44,7 +44,7 @@ When reviewing code or generating PRs, you MUST enforce the following strict gui
 ## 📥 STEP 1: DISCOVERY & DEEP CONTEXT FETCHING
 1. Scan the PR title, branch name, and description for a Jira issue key (e.g., `KAN-1`, `KAN-4`, `PROJ-123`).
 2. If found, you MUST aggressively discover the full context of the work. You MUST first use the Atlassian MCP tool `getTeamworkGraphContext`:
-   - **`cloudId`**: `neovancedemoatlassian.atlassian.net`
+   - **`cloudId`**: `rpxtest.atlassian.net`
    - **`objectType`**: `"JiraWorkItem"`
    - **`objectIdentifier`**: `[ISSUE_KEY]`
 3. `getTeamworkGraphContext` will return a graph of relationships (e.g., the parent Epic, child tasks, blocked issues, or related stories). 
@@ -68,7 +68,8 @@ Perform a ruthless, senior-level code inspection independent of Jira:
 - **Resilience:** Flag performance bottlenecks, security risks, and missing test coverage.
 
 ## 📋 STEP 4: MANDATORY REVIEW COMMENT FORMAT
-Your final output MUST be submitted as a top-level PR Review Comment matching this exact structure:
+**CRITICAL:** DO NOT generate a "PR Overview" and DO NOT modify the Pull Request description/body. 
+Your final output MUST be submitted as a **new, standalone PR Comment** (or a top-level PR Review Comment) matching this exact structure:
 
 ### 🎫 Jira Alignment: [ISSUE_KEY] - [Title]
 * **Type:** [Epic/Task/Story/Bug]
